@@ -3,14 +3,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Clona el repositorio desde Git
-                git 'https://github.com/nanecorner/simple-webapp.git'
+                git branch: 'main', url: 'https://github.com/nanecorner/simple-webapp.git'
             }
         }
         stage('Build') {
             steps {
-                // Ejecuta el comando para compilar el proyecto
-                sh './mvnw clean package'
+                // Usa mvn para compilar el proyecto
+                sh 'mvn clean package'
             }
         }
         stage('Deploy') {
