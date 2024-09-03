@@ -21,6 +21,8 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 script {
+                    // Espera 10 segundos antes de verificar el despliegue
+                    sleep 10
                     def response = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://localhost:8081/simple-webapp/hello", returnStdout: true).trim()
                     if (response != '200') {
                         error "Deployment failed. Received HTTP response code: ${response}"
